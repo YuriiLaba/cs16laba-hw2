@@ -1,12 +1,12 @@
 package ua.edu.ucu.collections.immutable;
 
 public class ImmutableLinkedList implements ImmutableList {
-    public  final LinkedNode head;
-    private final int size;
+    public LinkedNode head;
+    private int size;
 
-    public ImmutableLinkedList(LinkedNode head, int size) {
-        this.head = head;
-        this.size = size;
+    public ImmutableLinkedList() {
+        this.head = null;
+        this.size = 0;
     }
 
     @Override
