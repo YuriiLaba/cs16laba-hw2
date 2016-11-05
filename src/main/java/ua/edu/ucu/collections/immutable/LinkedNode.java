@@ -3,34 +3,31 @@ package ua.edu.ucu.collections.immutable;
 /**
  * Created by jlaba on 02.11.2016.
  */
-public class LinkedNode {
-    public Object data;
-    public Object next = null;
-    public Object previous = null;
+public class LinkedNode implements Cloneable {
+    public final Object data;
+    public LinkedNode next = null;
 
-    public LinkedNode(Object data, Object next, Object previous) {
+
+    public LinkedNode(Object data) {
         this.data = data;
+    }
+
+    public void setNext(LinkedNode next) {
         this.next = next;
-        this.previous = previous;
     }
 
     public Object getData() {
         return data;
     }
 
-    public Object getNext() {
+    public LinkedNode getNext() {
         return next;
     }
 
-    public Object getPrevious() {
-        return previous;
+    public LinkedNode clone() {
+        return new LinkedNode(data);
     }
-
-    public void setNext(Object next) {
-        this.next = next;
-    }
-
-    public void setPrevious(Object previous) {
-        this.previous = previous;
+    public String toString(){
+        return getData().toString();
     }
 }
