@@ -14,8 +14,8 @@ public class ImmutableLinkedList implements ImmutableList {
         if(size == 0){
             LinkedNode node_current = new LinkedNode(e);
             size += 1;
-            this.head = node_current;
-            return return_new_list(node_current);
+            //this.head = node_current;
+            return new ImmutableLinkedList(node_current, size);
         }
         else{
 
@@ -26,22 +26,17 @@ public class ImmutableLinkedList implements ImmutableList {
             }
             node_current.next = new LinkedNode(e);
             size += 1;
-            return return_new_list(new_head);
+            return new ImmutableLinkedList(new_head, size);
             }
         }
 
-    public ImmutableLinkedList return_new_list(LinkedNode e){
-        ImmutableLinkedList newList = new ImmutableLinkedList();
-        newList.head = e;
+    public ImmutableLinkedList(LinkedNode e, int size){
 
-        LinkedNode currentNode = newList.head;
+        //ImmutableLinkedList newList = new ImmutableLinkedList();
+        this.head = e;
+        this.size = size;
 
-        while (currentNode != null){
-            newList.size += 1;
-            currentNode = currentNode.next;
-
-        }
-        return newList;
+        //return newList;
     }
 
     public LinkedNode cloneLinkedList(){
@@ -80,7 +75,7 @@ public class ImmutableLinkedList implements ImmutableList {
                 real_head.next = realFirstCopiedList;
                 real_head = real_head.next;}
             size ++;
-            return return_new_list(Node);
+            return new ImmutableLinkedList(Node, size);
         }
 
         while (i<size){
@@ -105,7 +100,7 @@ public class ImmutableLinkedList implements ImmutableList {
             i++;
 
     }size++;
-        return return_new_list(realFirstCopiedList);
+        return new ImmutableLinkedList(realFirstCopiedList, size);
     }}
 
 
@@ -122,7 +117,7 @@ public class ImmutableLinkedList implements ImmutableList {
         }
         size++;
 
-        return return_new_list(realFirstCopiedList);
+        return new ImmutableLinkedList(realFirstCopiedList, size);
     }
 
     @Override
@@ -148,7 +143,7 @@ public class ImmutableLinkedList implements ImmutableList {
                 real_head = real_head.next;
             }
             size += c.length;
-            return return_new_list(real_new_head);
+            return new ImmutableLinkedList(real_new_head, size);
 
         }
 
@@ -171,7 +166,7 @@ public class ImmutableLinkedList implements ImmutableList {
             i++;
         }size += c.length;
 
-        return return_new_list(realFirstCopiedList);
+        return new ImmutableLinkedList(realFirstCopiedList, size);
     }}
 
     @Override
@@ -205,7 +200,7 @@ public class ImmutableLinkedList implements ImmutableList {
         if(index == 0){
             LinkedNode real_head = realFirstCopiedList.next;
             size --;
-            return return_new_list(real_head);
+            return new ImmutableLinkedList(real_head, size);
         }else{
         while(i < size){
             if (i<index-1){
@@ -224,7 +219,7 @@ public class ImmutableLinkedList implements ImmutableList {
             i++;
 
         }size --;
-        return return_new_list(realFirstCopiedList);
+        return new ImmutableLinkedList(realFirstCopiedList, size);
 
     }}}
 
@@ -241,12 +236,12 @@ public class ImmutableLinkedList implements ImmutableList {
                 ImmutableLinkedList list_without_removed_element = this.remove(i);
                 ImmutableLinkedList list_with_added_element = list_without_removed_element.add(i, e);
                 LinkedNode final_list = list_with_added_element.cloneLinkedList();
-                return return_new_list(final_list);
+                return new ImmutableLinkedList(final_list, size);
             }
             real_copied_list = real_copied_list.next;
             i++;
         }
-        return return_new_list(copied_list);
+        return new ImmutableLinkedList(copied_list, size);
     }}
 
     @Override
@@ -273,7 +268,7 @@ public class ImmutableLinkedList implements ImmutableList {
         while (i < size){
             realFirstCopiedList = null;
             i++;
-        }return return_new_list(realFirstCopiedList);
+        }return new ImmutableLinkedList(realFirstCopiedList, size);
     }
 
     @Override
@@ -318,7 +313,7 @@ public class ImmutableLinkedList implements ImmutableList {
             real_head.next = realFirstCopiedList;
             real_head = real_head.next;}
         size ++;
-        return return_new_list(Node);
+        return new ImmutableLinkedList(Node, size);
 
     }public ImmutableLinkedList addLast(Object e){
         LinkedNode realFirstCopiedList = cloneLinkedList();
@@ -328,13 +323,13 @@ public class ImmutableLinkedList implements ImmutableList {
             real_head = real_head.next;}
         real_head.next = new LinkedNode(e);
         size++;
-        return return_new_list(realFirstCopiedList);
+        return new ImmutableLinkedList(realFirstCopiedList, size);
     }
     public ImmutableLinkedList removeFirst(){
         LinkedNode realFirstCopiedList = cloneLinkedList();
         LinkedNode real_head = realFirstCopiedList.next;
         size --;
-        return return_new_list(real_head);
+        return new ImmutableLinkedList(real_head, size);
 
     }public ImmutableLinkedList removeLast() {
         LinkedNode realFirstCopiedList = cloneLinkedList();
@@ -343,7 +338,7 @@ public class ImmutableLinkedList implements ImmutableList {
             real_head = real_head.next;
     }size--;
     real_head.next = null;
-    return return_new_list(realFirstCopiedList);
+    return new ImmutableLinkedList(realFirstCopiedList, size);
     }
     public Object getFirst(){
         LinkedNode firstCopiedList = cloneLinkedList();
