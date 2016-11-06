@@ -51,13 +51,26 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     public ImmutableList addAll(int index, Object[] c) {
+        Object[] newList = new Object[size()+c.length];
+        int temp_index = index;
+        for(int i = 0; i<index; i++){
+            newList[i] = elements[i];}
+        for(int a = 0; a<c.length; a++){
+            newList[temp_index] = c[a];
+            temp_index++;}
+        for(int b = index; b<size(); b++){
+            newList[index+c.length] = elements[b];
+        index++;}
+        size += c.length;
 
-        return null;
+
+        return new ImmutableArrayList(newList);
     }
 
     public Object get(int index) {
         return null;
     }
+
     public ImmutableList remove(int index){
         if((index<0) || index >= size()){
             throw new IndexOutOfBoundsException();
