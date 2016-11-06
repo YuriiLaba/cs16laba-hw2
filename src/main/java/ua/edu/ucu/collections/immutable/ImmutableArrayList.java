@@ -39,7 +39,15 @@ public class ImmutableArrayList implements ImmutableList {
 
     public ImmutableList addAll(Object[] c) {
 
-        return null;
+        Object[] newList = new Object[size()+c.length];
+        for(int i = 0; i<size(); i++){
+            newList[i] = elements[i];
+        } for(int a = 0; a<c.length; a++){
+            newList[size()] = c[a];
+            size++;
+        }
+
+        return new ImmutableArrayList(newList);
     }
 
     public ImmutableList addAll(int index, Object[] c) {

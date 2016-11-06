@@ -49,8 +49,9 @@ public class Main {
         //test_array.clear();
         //System.out.println(test_array.add(100));
         //System.out.println(test_array.remove(2));
-        System.out.println(test_array.add(4,100));
+        //System.out.println(test_array.add(4,100));
         //System.out.println(test_array.toString());
+        System.out.println(test_array.addAll(new Object[]{100,200,300}));
 
 
     }
