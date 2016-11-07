@@ -185,7 +185,7 @@ public class ImmutableLinkedListTest {
         test = test.add(89);
         test = test.add(40);
         Object actualResult = test.clear();
-        assertEquals("", actualResult.toString());
+        assertEquals("is empty", actualResult.toString());
     }
     @Test
     public  void testMethodEmpty(){

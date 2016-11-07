@@ -14,7 +14,8 @@ public class StackTest {
         assertEquals("10-->34-->1-->", new_stack.toString());
     }
     @Test
-    public void testPeek() {
+    public void testPeek()
+    {
         Stack new_stack = new Stack();
         new_stack.pop(10);
         new_stack.pop(34);
@@ -23,7 +24,8 @@ public class StackTest {
         assertEquals(1, actualResult);
     }
     @Test
-    public void testPop_1() {
+    public void testPop_1()
+    {
         Stack new_stack = new Stack();
         new_stack.pop(10);
         new_stack.pop(34);

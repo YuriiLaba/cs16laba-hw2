@@ -317,6 +317,7 @@ public class ImmutableLinkedList implements ImmutableList {
             realFirstCopiedList = null;
             i++;
         }
+        size = 0;
         return new ImmutableLinkedList(realFirstCopiedList, size);
     }
 
@@ -403,11 +404,17 @@ public class ImmutableLinkedList implements ImmutableList {
     public String toString()
     {
         String str = "";
+        if(size == 0){
+            str += "is empty";
+        }
+        else
+        {
         LinkedNode start = head;
         while ((start != null))
         {
             str += start.getData().toString() + "-->";
             start = start.next;
+        }
         }
         return str;
     }
