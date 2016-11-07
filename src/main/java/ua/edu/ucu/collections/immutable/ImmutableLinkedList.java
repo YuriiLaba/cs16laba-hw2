@@ -11,7 +11,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList add(Object e) {
-        if(size == 0){
+        if(size == 0)
+        {
             LinkedNode node_current = new LinkedNode(e);
             size += 1;
             //this.head = node_current;
