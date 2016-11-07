@@ -10,13 +10,14 @@ public class Queue {
         linkedList = new ImmutableLinkedList();
     }
 
-    public Object peek(){
+    public Object peek()
+    {
         return linkedList.getFirst();
     }
 
     public void enqueue(Object e)
     {
-        linkedList = linkedList.addFirst(e);
+        linkedList = linkedList.add(e);
 
     }
 
@@ -28,7 +29,8 @@ public class Queue {
     }
 
 
-    public String toString(){
+    public String toString()
+    {
         return linkedList.toString();
     }
 

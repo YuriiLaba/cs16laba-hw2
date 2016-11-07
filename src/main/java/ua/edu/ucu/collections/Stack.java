@@ -11,12 +11,13 @@ public class Stack {
         linkedList1 = new ImmutableLinkedList();
     }
 
-    public Object peek(){
+    public Object peek()
+    {
         return linkedList1.getLast();
     }
     public void pop(Object e)
     {
-        linkedList1 = linkedList1.addFirst(e);
+        linkedList1 = linkedList1.add(e);
 
     }
     public Object pop()

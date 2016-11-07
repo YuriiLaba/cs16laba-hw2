@@ -44,7 +44,7 @@ public class Main {
         //System.out.println(test_stack.pop());
         //System.out.println(test_stack.peek());
         //System.out.println(test_stack.toString());
-        ImmutableArrayList test_array = new ImmutableArrayList();
+        //ImmutableArrayList test_array = new ImmutableArrayList();
         //System.out.println(test_array.remove(4));
         //System.out.println(test_array.set(0,100));
         //System.out.println(test_array.indexOf(1));
@@ -59,13 +59,14 @@ public class Main {
         //System.out.println(test_array.toString());
         //System.out.println(test_array.addAll(new Object[]{100,200,300}));
         //System.out.println(test_array.addAll(0, new Object[]{100, 400,455, 600}));
-        System.out.println(test_array.clear());
-        System.out.println(test_array.toString());
+        //System.out.println(test_array.clear());
+        //System.out.println(test_array.toString());
         //System.out.println(test_array.get(6));
         //Queue new_queue = new Queue();
         //new_queue.enqueue(45);
         //new_queue.enqueue(5);
-        //new_queue.enqueue();
+        //new_queue.enqueue(2);
+        //System.out.println(new_queue.toString());
         //System.out.println(new_queue.peek());
         //System.out.println(new_queue.dequeue());
         //System.out.println(new_queue.toString());
