@@ -52,14 +52,15 @@ public class ImmutableLinkedList implements ImmutableList {
             }
             //System.out.println(clone_head);
             return clone_head;
-    }return null;
+    } return null;
     }
 
     @Override
     public ImmutableLinkedList add(int index, Object e) {
         if (index>size) {
             throw new IndexOutOfBoundsException();
-        } else {
+        }
+        else {
         int i = 0;
         LinkedNode realFirstCopiedList = cloneLinkedList();
         LinkedNode firstCopiedList = realFirstCopiedList;
@@ -84,7 +85,8 @@ public class ImmutableLinkedList implements ImmutableList {
                 firstCopiedList = firstCopiedList.next;
                 secondCopiedList = secondCopiedList.next;
 
-            }else if (i==index-1) {
+            }
+            else if (i==index-1) {
                 firstCopiedList.next = new LinkedNode(e);
                 //System.out.println(firstCopiedList.next);
                 firstCopiedList = firstCopiedList.next;
@@ -92,7 +94,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
                 //return return_new_list(firstCopiedList);
 
-            } else {
+            }
+            else {
                 firstCopiedList.next = secondCopiedList.next;
                 //System.out.println(firstCopiedList.next);
                 firstCopiedList = firstCopiedList.next;
@@ -102,7 +105,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     }size++;
         return new ImmutableLinkedList(realFirstCopiedList, size);
-    }}
+    }
+    }
 
 
     @Override
@@ -125,7 +129,8 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList addAll(int index, Object[] c) {
         if (index>size) {
             throw new IndexOutOfBoundsException();
-        } else {
+        }
+        else {
         LinkedNode realFirstCopiedList = cloneLinkedList();
         LinkedNode firstCopiedList = realFirstCopiedList;
         LinkedNode secondCopiedList = cloneLinkedList();
@@ -158,7 +163,8 @@ public class ImmutableLinkedList implements ImmutableList {
                     firstCopiedList = firstCopiedList.next;
                 }
 
-            } else {
+            }
+            else {
                 firstCopiedList.next = secondCopiedList.next;
                 firstCopiedList = firstCopiedList.next;
                 secondCopiedList = secondCopiedList.next;
@@ -168,13 +174,15 @@ public class ImmutableLinkedList implements ImmutableList {
         }size += c.length;
 
         return new ImmutableLinkedList(realFirstCopiedList, size);
-    }}
+    }
+    }
 
     @Override
     public Object get(int index) {
         if (index > size) {
             throw new IndexOutOfBoundsException();
-        } else {
+        }
+        else {
         int i = 0;
 
         LinkedNode firstCopiedList = cloneLinkedList();
@@ -182,7 +190,8 @@ public class ImmutableLinkedList implements ImmutableList {
         while (i != index) {
             firstCopiedList = firstCopiedList.next;
             i++;
-        }return firstCopiedList.getData();
+        }
+        return firstCopiedList.getData();
 
     }
     }
@@ -192,7 +201,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
         if (index >= size) {
             throw new IndexOutOfBoundsException();
-        }else{
+        }
+        else{
         int i = 0;
         LinkedNode realFirstCopiedList = cloneLinkedList();
         LinkedNode firstCopiedList = realFirstCopiedList;
@@ -202,16 +212,19 @@ public class ImmutableLinkedList implements ImmutableList {
             LinkedNode real_head = realFirstCopiedList.next;
             size --;
             return new ImmutableLinkedList(real_head, size);
-        } else {
+        }
+        else {
         while (i < size) {
             if (i<index-1) {
                 firstCopiedList = firstCopiedList.next;
                 secondCopiedList = secondCopiedList.next;
 
-            }else if (i == index-1) {
+            }
+            else if (i == index-1) {
                 firstCopiedList.next = secondCopiedList;
                 secondCopiedList = secondCopiedList.next;
-            }else {
+            }
+            else {
                 firstCopiedList.next = secondCopiedList.next;
                 firstCopiedList = firstCopiedList.next;
                 secondCopiedList = secondCopiedList.next;
@@ -219,10 +232,13 @@ public class ImmutableLinkedList implements ImmutableList {
 
             i++;
 
-        }size --;
+        }
+        size --;
         return new ImmutableLinkedList(realFirstCopiedList, size);
 
-    }}}
+    }
+        }
+    }
 
     @Override
     public ImmutableLinkedList set(int index, Object e) {
@@ -243,7 +259,8 @@ public class ImmutableLinkedList implements ImmutableList {
             i++;
         }
         return new ImmutableLinkedList(copied_list, size);
-    }}
+    }
+    }
 
     @Override
     public int indexOf(Object e) {
@@ -274,7 +291,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        if(size == 0){
+        if(size == 0) {
             return true;
         }return false;
 
@@ -320,7 +337,8 @@ public class ImmutableLinkedList implements ImmutableList {
         LinkedNode real_head = realFirstCopiedList;
         while (real_head.next.next != null) {
             real_head = real_head.next;
-        }size--;
+        }
+        size--;
         real_head.next = null;
         return new ImmutableLinkedList(realFirstCopiedList, size);
     }
