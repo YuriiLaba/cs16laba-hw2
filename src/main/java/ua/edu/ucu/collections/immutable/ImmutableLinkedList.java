@@ -1,7 +1,7 @@
 package ua.edu.ucu.collections.immutable;
 
 public class ImmutableLinkedList implements ImmutableList {
-    public LinkedNode head;
+    public final LinkedNode head;
     private int size;
 
     public ImmutableLinkedList() {
@@ -292,16 +292,6 @@ public class ImmutableLinkedList implements ImmutableList {
 
         return list;
     }
-
-    public String toString(){
-        String str = "";
-        LinkedNode start = head;
-        while ((start != null)){
-            str += start.getData().toString() + "-->";
-            start = start.next;
-        }
-        return str;
-    }
     public ImmutableLinkedList addFirst(Object e) {
         LinkedNode realFirstCopiedList = cloneLinkedList();
         LinkedNode Node = new LinkedNode(e);
@@ -316,14 +306,7 @@ public class ImmutableLinkedList implements ImmutableList {
         return new ImmutableLinkedList(Node, size);
 
     }public ImmutableLinkedList addLast(Object e){
-        LinkedNode realFirstCopiedList = cloneLinkedList();
-        LinkedNode real_head = realFirstCopiedList;
-
-        while( real_head.next != null){
-            real_head = real_head.next;}
-        real_head.next = new LinkedNode(e);
-        size++;
-        return new ImmutableLinkedList(realFirstCopiedList, size);
+        return this.add(e);
     }
     public ImmutableLinkedList removeFirst(){
         LinkedNode realFirstCopiedList = cloneLinkedList();
@@ -336,13 +319,14 @@ public class ImmutableLinkedList implements ImmutableList {
         LinkedNode real_head = realFirstCopiedList;
         while (real_head.next.next != null) {
             real_head = real_head.next;
-    }size--;
-    real_head.next = null;
-    return new ImmutableLinkedList(realFirstCopiedList, size);
+        }size--;
+        real_head.next = null;
+        return new ImmutableLinkedList(realFirstCopiedList, size);
     }
     public Object getFirst(){
-        LinkedNode firstCopiedList = cloneLinkedList();
-        return firstCopiedList.getData();
+
+        return this.get(0);
+
     }public Object getLast(){
         LinkedNode firstCopiedList = cloneLinkedList();
         while(firstCopiedList.next != null){
@@ -350,6 +334,17 @@ public class ImmutableLinkedList implements ImmutableList {
         }
         return firstCopiedList.getData();
     }
+
+    public String toString(){
+        String str = "";
+        LinkedNode start = head;
+        while ((start != null)){
+            str += start.getData().toString() + "-->";
+            start = start.next;
+        }
+        return str;
+    }
+
 
 }
 

@@ -1,22 +1,28 @@
 package ua.edu.ucu.collections.immutable;
 
+
 public class ImmutableArrayList implements ImmutableList {
     private final Object[] elements;
-    private int size;
+    private int size = 0;
 
-    public ImmutableArrayList(Object[] elements) {
-        this.size = elements.length;
+    public ImmutableArrayList() {
+        this.elements = new Object[0];
+    }
+
+    public ImmutableArrayList(Object[] elements, int size) {
+        this.size = size;
         this.elements = elements;
     }
 
     @Override
-    public ImmutableList add(Object e){
-        Object[] newList = new Object[size()+1];
-        for(int i = 0; i<size; i++){
+    public ImmutableArrayList add(Object e){
+        Object[] newList = new Object[size+1];
+        for(int i = 0; i < size; i++){
             newList[i] = elements[i];
         }
-        newList[size()] = e;
-        return new ImmutableArrayList(newList);
+        newList[size] = e;
+        size++;
+        return new ImmutableArrayList(newList, size);
     }
 
     public ImmutableList add(int index, Object e) {
@@ -30,10 +36,10 @@ public class ImmutableArrayList implements ImmutableList {
                 newList[i] = e;
                 for(int a = index; a<size; a++){
                     newList[a+1] = elements[a];
-                }return new ImmutableArrayList(newList);
+                }return new ImmutableArrayList(newList, size);
 
             }
-        }return new ImmutableArrayList(newList);
+        }return new ImmutableArrayList(newList, size);
 
     }
 
@@ -47,7 +53,7 @@ public class ImmutableArrayList implements ImmutableList {
             size++;
         }
 
-        return new ImmutableArrayList(newList);
+        return new ImmutableArrayList(newList, size);
     }
 
     public ImmutableList addAll(int index, Object[] c) {
@@ -64,11 +70,14 @@ public class ImmutableArrayList implements ImmutableList {
         size += c.length;
 
 
-        return new ImmutableArrayList(newList);
+        return new ImmutableArrayList(newList, size);
     }
 
     public Object get(int index) {
-        return null;
+        if(index>size){
+            throw new IndexOutOfBoundsException();
+        }else{
+        return elements[index];}
     }
 
     public ImmutableList remove(int index){
@@ -87,7 +96,7 @@ public class ImmutableArrayList implements ImmutableList {
 
             }
             size--;
-            return new ImmutableArrayList(newList);
+            return new ImmutableArrayList(newList, size);
 
         }
     }
@@ -106,7 +115,7 @@ public class ImmutableArrayList implements ImmutableList {
             }
 
 
-            return new ImmutableArrayList(newList);
+            return new ImmutableArrayList(newList, size);
         }
 
     }
@@ -125,8 +134,11 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     public ImmutableList clear(){
-        //Object cleared_list = new Object[s];
-        return null;
+        Object[] newList = new Object[size()+1];
+        for(int i = 0; i<size; i++){
+            newList[i] = null;}
+        size = 0;
+        return new ImmutableArrayList(newList, size);
 
     }
 
@@ -148,7 +160,7 @@ public class ImmutableArrayList implements ImmutableList {
 
         public String toString(){
             String str = "";
-            for(int i = 0; i<size(); i++){
+            for(int i = 0; i < size(); i++){
                 str += elements[i];
                 str += "--";
             }return str;

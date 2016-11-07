@@ -1,61 +1,32 @@
 package ua.edu.ucu.collections;
 
+import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
+
 public class Stack {
-    private class StackNode {
-        private Object data;
-        private StackNode next;
 
-        public StackNode getNext() {
-            return next;
-        }
+    private ImmutableLinkedList linkedList1;
+    public Stack()
+    {
 
-        public void setNext(StackNode next) {
-            this.next = next;
-
-        }
-
-        public StackNode(Object data) {
-            this.data = data;
-            this.next = null;
-        }
-
-        public Object getData() {
-            return data;
-        }
-    }
-    private StackNode top;
-
-
-
-    public Stack() {
-        this.top = null;
+        linkedList1 = new ImmutableLinkedList();
     }
 
-    public void pop(Object e){
-        StackNode node = new StackNode(e);
-        if(top == null){
-            top = node;
-        }else{
-            node.setNext(top);
-            top = node;
-        }
-
-    }
-
-    public Object pop(){
-        Object result = top.getData();
-        top = top.getNext();
-        return result;
-    }
     public Object peek(){
-        return top.getData();
+        return linkedList1.getLast();
+    }
+    public void pop(Object e)
+    {
+        linkedList1 = linkedList1.addFirst(e);
+
+    }
+    public Object pop()
+    {
+        Object removedData = linkedList1.getLast();
+        linkedList1 = linkedList1.removeLast();
+        return removedData;
+    }
+    public String toString(){
+        return linkedList1.toString();
     }
 
-    public String toString(){
-        String str = "";
-        while ((top != null)){
-            str += top.getData().toString() + "-->";
-            top = top.next;
-        }
-        return str;}
 }

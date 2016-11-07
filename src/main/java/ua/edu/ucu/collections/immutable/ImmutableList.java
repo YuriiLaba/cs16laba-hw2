@@ -3,7 +3,7 @@ package ua.edu.ucu.collections.immutable;
 // У результаті змін, що призводять на модифікації (зміну стану) колекції має повртатись нова колекція
 public interface ImmutableList {
 
-    ImmutableList add(Object e) throws CloneNotSupportedException; //додає елемент у кінець колекції
+    ImmutableList add(Object e); //додає елемент у кінець колекції
 
 
 
