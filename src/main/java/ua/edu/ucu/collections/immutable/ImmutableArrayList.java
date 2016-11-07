@@ -65,7 +65,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     public ImmutableList addAll(int index, Object[] c) {
-        if((index<0) || index >= size()){
+        if((index<0) || index >= size()){ 
             throw new IndexOutOfBoundsException();
         } else {
         Object[] newList = new Object[size()+c.length];
