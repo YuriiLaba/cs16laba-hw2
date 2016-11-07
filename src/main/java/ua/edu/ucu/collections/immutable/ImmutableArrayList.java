@@ -1,6 +1,8 @@
 package ua.edu.ucu.collections.immutable;
 
 
+import java.util.Arrays;
+
 public class ImmutableArrayList implements ImmutableList {
     private final Object[] elements;
     private int size = 0;
@@ -25,24 +27,30 @@ public class ImmutableArrayList implements ImmutableList {
         return new ImmutableArrayList(newList, size);
     }
 
-    public ImmutableList add(int index, Object e) {
+    public ImmutableArrayList add(int index, Object e) {
+        if((index<0) || index > size()){
+            throw new IndexOutOfBoundsException();
+        } else {
         Object[] newList = new Object[size()+1];
-        for(int i = 0; i<size; i++){
+        for(int i = 0; i<size+1; i++){
             if(i != index){
                 newList[i] = elements[i];
             }
 
             else{
                 newList[i] = e;
-                for(int a = index; a<size; a++){
+                int a = index;
+                while (a<size) {
                     newList[a+1] = elements[a];
-                }return new ImmutableArrayList(newList, size);
-
+                    a++;
+                }break;
             }
-        }return new ImmutableArrayList(newList, size);
+
+        }size++;
+        return new ImmutableArrayList(newList, size);
 
     }
-
+    }
     public ImmutableList addAll(Object[] c) {
 
         Object[] newList = new Object[size()+c.length];
@@ -57,6 +65,9 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     public ImmutableList addAll(int index, Object[] c) {
+        if((index<0) || index >= size()){
+            throw new IndexOutOfBoundsException();
+        } else {
         Object[] newList = new Object[size()+c.length];
         int temp_index = index;
         for(int i = 0; i<index; i++){
@@ -72,15 +83,17 @@ public class ImmutableArrayList implements ImmutableList {
 
         return new ImmutableArrayList(newList, size);
     }
-
-    public Object get(int index) {
-        if(index>size){
-            throw new IndexOutOfBoundsException();
-        }else{
-        return elements[index];}
     }
 
-    public ImmutableList remove(int index){
+    public Object get(int index) {
+        if((index<0) || index >= size()){
+            throw new IndexOutOfBoundsException();
+        } else{
+        return elements[index];
+        }
+    }
+
+    public ImmutableList remove(int index) {
         if((index<0) || index >= size()){
             throw new IndexOutOfBoundsException();
         }else{
@@ -101,7 +114,7 @@ public class ImmutableArrayList implements ImmutableList {
         }
     }
 
-    public ImmutableList set(int index, Object e){
+    public ImmutableList set(int index, Object e) {
         if((index<0) || index >= size()){
             throw new  IndexOutOfBoundsException();
         }else{
@@ -113,14 +126,12 @@ public class ImmutableArrayList implements ImmutableList {
                 newList[i] = elements[i];
                 }
             }
-
-
             return new ImmutableArrayList(newList, size);
         }
 
     }
 
-    public int indexOf(Object e){
+    public int indexOf(Object e) {
         for (int i = 0; i < size(); i++){
             if(e == elements[i]){
                 return i;
@@ -133,16 +144,14 @@ public class ImmutableArrayList implements ImmutableList {
 
     }
 
-    public ImmutableList clear(){
-        Object[] newList = new Object[size()+1];
-        for(int i = 0; i<size; i++){
-            newList[i] = null;}
+    @Override
+    public ImmutableList clear() {
+        Object [] clearedList = new Object[0];
         size = 0;
-        return new ImmutableArrayList(newList, size);
-
+        return new ImmutableArrayList(clearedList,size);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         if (this.size()>0){
             return false;
         }else{
@@ -150,22 +159,30 @@ public class ImmutableArrayList implements ImmutableList {
         }
     }
 
-    public Object[] toArray(){
-        Object[] list = new Object[this.size() + 1];
-        for (int i =0; i <this.size(); i++){
-            list[i] = this.get(i);
-            return list;
-        }return null;
+    public Object[] toArray() {
+        Object[] list = new Object[size];
+        int i = 0;
+        while (i != size){
+            list[i] = elements[i];
+            i++;
+        }
+
+        return list;
     }
 
-        public String toString(){
+        public String toString() {
             String str = "";
-            for(int i = 0; i < size(); i++){
+            if(size == 0){
+                str += "is empty";
+            }else{
+
+                for(int i = 0; i < size(); i++){
+                //System.out.println(Arrays.toString(elements));
                 str += elements[i];
-                str += "--";
+                str += "-->";}
             }return str;
     }
 
+}
 
-    }
 

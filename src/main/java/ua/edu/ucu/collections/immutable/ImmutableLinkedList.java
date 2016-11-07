@@ -87,7 +87,7 @@ public class ImmutableLinkedList implements ImmutableList {
                 firstCopiedList.next = new LinkedNode(e);
                 //System.out.println(firstCopiedList.next);
                 firstCopiedList = firstCopiedList.next;
-                
+
 
                 //return return_new_list(firstCopiedList);
 
